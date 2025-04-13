@@ -38,7 +38,7 @@ zip -r layer.zip python
 ```
 
 After this, layer.zip can be uploaded and added in the Lambda layer:
-![mongo-requests-layer](/images/2%20-%20adding-lambda-layer.png)
+![mongo-requests-layer](/images/adding-lambda-layer.png)
 
 
 ---
@@ -62,10 +62,10 @@ Here is the function:
 ![Lambda function](/lambda.function.py)
 
 I manually tested the function. It worked and generated CloudWatch logs:  
-![CloudWatch test log](/images/5-lambda%20test.png)
+![CloudWatch test log](/images/lambda-test.png)
 
 Then I verified that a document was successfully inserted into MongoDB Atlas:  
-![MongoDB document](/images/6%20-%20doc-inserted.png)
+![MongoDB document](/images/doc-inserted.png)
 
 
 ---
@@ -76,17 +76,17 @@ Then I verified that a document was successfully inserted into MongoDB Atlas:
 
 Used a cron expression to trigger the function hourly:  
 **`cron(0 * * * ? *)`** → runs at minute 0 of every hour  
-![EventBridge cron](/images/7%20-%20eventbridge.png)
+![EventBridge cron](/images/eventbridge.png)
 
 ### Target: Lambda Function
 
 Set the target to be the Lambda function:  
-![EventBridge target Lambda](/images/8%20-%20lambda-target.png)
+![EventBridge target Lambda](/images/lambda-target.png)
 
 ### Permissions
 
 Allowed EventBridge to invoke the Lambda function by adding a **resource-based policy**:  
-![EventBridge permissions](/images/9%20-%20resource-based-policy.png)
+![EventBridge permissions](/images/resource-based-policy.png)
 
 
 ---
@@ -94,7 +94,7 @@ Allowed EventBridge to invoke the Lambda function by adding a **resource-based p
 ## CloudWatch Logs
 
 Confirmed that CloudWatch logs are generated every hour as expected:  
-![CloudWatch logs hourly](/images/10%20-%20cloudwatch-final-logs.png)
+![CloudWatch logs hourly](/images/cloudwatch-final-logs.png)
 
 
 ---
@@ -102,7 +102,7 @@ Confirmed that CloudWatch logs are generated every hour as expected:
 ## MongoDB Atlas Insertion
 
 Checked that a new document is inserted every hour in the `weather_data` collection:  
-![MongoDB Atlas insertion](/images/11%20-%20weather-data.png)
+![MongoDB Atlas insertion](/images/weather-data.png)
 
 
 ---
